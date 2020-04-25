@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Black &amp; White</title>
+    <title>我的博客</title>
 
     <!-- meta -->
     <meta charset="UTF-8">
@@ -79,7 +79,7 @@
                             </div>
                         </header>
                         <div class="entry-content clearfix">
-                            {{ post.body }}
+                            {{ post.body|safe }}
                         </div>
                     </article>
                     <section class="comment-area" id="comment-area">
@@ -144,26 +144,16 @@
             </main>
             <aside class="col-md-4">
                 {% block toc %}
-                    <div class="widget widget-content">
-                        <h3 class="widget-title">文章目录</h3>
-                        <ul>
-                            <li>
-                                <a href="#">教程特点</a>
-                            </li>
-                            <li>
-                                <a href="#">谁适合这个教程</a>
-                            </li>
-                            <li>
-                                <a href="#">在线预览</a>
-                            </li>
-                            <li>
-                                <a href="#">资源列表</a>
-                            </li>
-                            <li>
-                                <a href="#">获取帮助</a>
-                            </li>
-                        </ul>
+                    {% if post.toc %}
+                        <div class="widget widget-content">
+                            <h3 class="widget-title">文章目录</h3>
+                            <div class="toc">
+                                <ul>
+                                    {{ post.toc|safe }}
+                                </ul>
+                            </div>
                     </div>
+                    {% endif %}
                 {% endblock toc %}
                 <div class="widget widget-recent-posts">
                     <h3 class="widget-title">最新文章</h3>
